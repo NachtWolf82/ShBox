@@ -2,7 +2,7 @@
 
 /*
 
-Script     => ShBox 4.0P
+Script     => ShBox 4.0P up
 
 Entwickler => WDS NachtWolf / B.Masmann
 
