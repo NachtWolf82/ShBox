@@ -1,9 +1,12 @@
 <?php
 /*
-Script     => ShBox 4.0P
-Entwickler => WDS NachtWolf / B.Masmann
-Seite/Sup. => http://www.ilch.de
-Kontakt    => Masmann82@gmx.de
+Script       => ShBox 4.1
+Ilch Version => 1.1Q
+Entwickler   => NachtWolf / B.Masmann
+Date         => 27.11.15
+Seite/Sup.   => http://www.ilch.de
+                http://www.nf-projekt.de
+Kontakt      => Masmann82@gmx.de
 */
 
 defined ('main') or die ('no direct access');
@@ -11,21 +14,23 @@ defined ('admin') or die ('only admin access');
 
 $design = new design('Admins Area', 'Admins Area', 2);
 $design->addheader('<link rel="stylesheet" type="text/css" href="include/images/shbox4/shbox4.css" />
-                    <script type="text/javascript" charset="utf-8" src="include/includes/js/shbox4.js"></script>
-                    <script type="text/javascript" src="include/includes/js/jscolor.js"></script>');
+                    <script type="text/javascript" charset="utf-8" src="include/includes/js/shbox4.js" /></script>
+                    <script type="text/javascript" src="include/includes/js/jscolor.js" /></script>');
 $design->header();
 include ('include/includes/class/shbox4class.php');
 $var = NEW ShBox4();
 $tpl = new tpl('shbox4admin',1);
 
-if ($var->shconfig(4) == '1') {
+if ($var->shconfig('farbe') == '1') {
     $ar  = array(
-            'FARBE'  => '<th align="center" class="Cmite"><a href="?shbox4admin-farben"> Farben </a></th>'
+            'VERSION' => $var->version,
+            'FARBE'   => '<a href="?shbox4admin-farben" class="btn btn-primary">Farben</a>'
     );
     $tpl->set_ar_out($ar,0);
 }else {
     $ar  = array(
-            'FARBE'  => ''
+            'VERSION' => $var->version,
+            'FARBE'   => ''
     );
     $tpl->set_ar_out($ar,0);
 }
@@ -101,10 +106,10 @@ if (escape($menu->get(1), 'string') == 'allg'){
         'DBN4'                => 'size',
         'MTEXT'               => $row['mtext'],
         'DBN5'                => 'mtext',
-        'BBFETT'              => $var->shcheckbox($var->shconfig(17), $var->shconfig(31), 'bbfett', 'Fett', $row['bbfett'], $url, 'bold'),
-        'BBKURSIV'            => $var->shcheckbox($var->shconfig(17), $var->shconfig(32), 'bbkursiv', 'Kursiv', $row['bbkursiv'], $url, 'italic'),
-        'BBUNTER'             => $var->shcheckbox($var->shconfig(17), $var->shconfig(33), 'bbunter', 'Unterstrich', $row['bbunter'], $url, 'underline'),
-        'BBLINK'              => $var->shcheckbox($var->shconfig(17), $var->shconfig(34), 'bblink', 'Link', $row['bblink'], $url, 'link')
+        'BBFETT'              => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbfett'), 'bbfett', 'Fett', $row['bbfett'], $url, 'bold'),
+        'BBKURSIV'            => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbkursiv'), 'bbkursiv', 'Kursiv', $row['bbkursiv'], $url, 'italic'),
+        'BBUNTER'             => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbunter'), 'bbunter', 'Unterstrich', $row['bbunter'], $url, 'underline'),
+        'BBLINK'              => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bblink'), 'bblink', 'Link', $row['bblink'], $url, 'link')
     );
     $tpl->set_ar_out($ar,1);
 }
@@ -120,12 +125,12 @@ if (escape($menu->get(1), 'string') == 'farben'){
         'USERTEXT'            => $var->check_var('tuser', 'Text User', $row['tuser'],$url),
         'ADMINNAME'           => $var->check_var('nadmin', 'Name Admin', $row['nadmin'],$url),
         'ADMINTEXT'           => $var->check_var('tadmin', 'Text Admin', $row['tadmin'],$url),
-        'NGAST'               => $var->shfarben($var->shconfig(5), 'Farbe: Name der Gäste', 'fngast', $row['fngast'],$url,0),
-        'TGAST'               => $var->shfarben($var->shconfig(6), 'Farbe:Text der Gäste', 'ftgast', $row['ftgast'],$url,0),
-        'NUSER'               => $var->shfarben($var->shconfig(7), 'Farbe:Name der User', 'fnuser', $row['fnuser'],$url,0),
-        'TUSER'               => $var->shfarben($var->shconfig(8), 'Farbe:Text der User', 'ftuser', $row['ftuser'],$url,0),
-        'NADMIN'              => $var->shfarben($var->shconfig(9), 'Farbe:Name der Admins', 'fnadmin', $row['fnadmin'],$url,0),
-        'TADMIN'              => $var->shfarben($var->shconfig(10), 'Farbe:Text der Admins', 'ftadmin', $row['ftadmin'],$url,0)
+        'NGAST'               => $var->shfarben($var->shconfig('ngast'), 'Farbe: Name der Gäste', 'fngast', $row['fngast'],$url,0),
+        'TGAST'               => $var->shfarben($var->shconfig('tgast'), 'Farbe:Text der Gäste', 'ftgast', $row['ftgast'],$url,0),
+        'NUSER'               => $var->shfarben($var->shconfig('nuser'), 'Farbe:Name der User', 'fnuser', $row['fnuser'],$url,0),
+        'TUSER'               => $var->shfarben($var->shconfig('tuser'), 'Farbe:Text der User', 'ftuser', $row['ftuser'],$url,0),
+        'NADMIN'              => $var->shfarben($var->shconfig('nadmin'), 'Farbe:Name der Admins', 'fnadmin', $row['fnadmin'],$url,0),
+        'TADMIN'              => $var->shfarben($var->shconfig('tadmin'), 'Farbe:Text der Admins', 'ftadmin', $row['ftadmin'],$url,0)
     );
     $tpl->set_ar_out($ar,2);
 }
@@ -137,11 +142,11 @@ if (escape($menu->get(1), 'string') == 'style'){
     $ar  = array(
         'AUSRICHTUNG'         => $var->check_var('ausr', 'Eigene Ausrichtung', $row['ausr'],$url),
         'HINTERGRUND'         => $var->check_var('hgrund', 'Eigener Hintergrund', $row['hgrund'],$url),
-        'BBREITE'             => $var->shfarben($var->shconfig(28), 'Breite der Box in %', 'bbreite', $row['bbreite'],$url,1),
-        'BAUS'                => $var->shfarben($var->shconfig(28), 'Ausrichtung der Box', 'baus', $row['baus'],$url,2),
-        'HFNAME'              => $var->shfarben($var->shconfig(29), 'Hintergrundfarbe vom Namen', 'hfname', $row['hfname'],$url,0),
-        'HFTEXT'              => $var->shfarben($var->shconfig(29), 'Hintergrundfarbe vom Text', 'hftext', $row['hftext'],$url,0),
-        'HFINPUT'             => $var->shfarben($var->shconfig(29), 'Hintergrundfarbe vom Eingabefeld', 'hfinput', $row['hfinput'],$url,0)
+        'BBREITE'             => $var->shfarben($var->shconfig('ausr'), 'Breite der Box in %', 'bbreite', $row['bbreite'],$url,1),
+        'BAUS'                => $var->shfarben($var->shconfig('ausr'), 'Ausrichtung der Box', 'baus', $row['baus'],$url,2),
+        'HFNAME'              => $var->shfarben($var->shconfig('hgrund'), 'Hintergrundfarbe vom Namen', 'hfname', $row['hfname'],$url,0),
+        'HFTEXT'              => $var->shfarben($var->shconfig('hgrund'), 'Hintergrundfarbe vom Text', 'hftext', $row['hftext'],$url,0),
+        'HFINPUT'             => $var->shfarben($var->shconfig('hgrund'), 'Hintergrundfarbe vom Eingabefeld', 'hfinput', $row['hfinput'],$url,0)
     );
     $tpl->set_ar_out($ar,3);
 }
@@ -162,7 +167,6 @@ if (escape($menu->get(1), 'string') == 'show'){
     }
     $tpl->set_ar_out($ar,4);
 }
-
 $var->version();
 $design->footer();
 ?>

@@ -1,149 +1,44 @@
 <?php
 /*
-Script     => ShBox 4.0P
-Entwickler => WDS NachtWolf / B.Masmann
-Seite/Sup. => http://www.ilch.de
-Kontakt    => Masmann82@gmx.de
+Script       => ShBox 4.1
+Ilch Version => 1.1Q
+Entwickler   => NachtWolf / B.Masmann
+Date         => 27.11.15
+Seite/Sup.   => http://www.ilch.de
+                http://www.nf-projekt.de
+Kontakt      => Masmann82@gmx.de
 */
 
 defined ('main') or die ('no direct access');
 
 class ShBox4 {
-    var $version = 'ShBox 4.0P';
+    var $version = 'ShBox 4.1Q';
     var $text;
     var $name;
-    // Auslesen der Configuration bitte nicht hier verändern dafür ist der Adminbereich gedacht ;)
     function shconfig($var) {
-        $erg = db_query('SELECT * FROM `prefix_shbox4config` WHERE id = "1"');
-        $row = db_fetch_assoc($erg);
-        switch ($var) {
-        case 0:
-            return $row['ausgabe'];       //Anzahl wie viele Einträge in der ShBox ausgegeben werden sollen
-            break;
-        case 1:
-            return $row['time'];;         //Die Reloadzeit
-            break;
-        case 2:
-            return $row['datum'];         //Fragt ab ob Datum Aktiv oder Inaktiv ist
-            break;
-        case 3:
-            return $row['aktiv'];         //Fragt ab ob die Box aktiv oder inaktiv ist
-            break;
-        case 4:
-            return $row['farbe'];         //Fragt ab ob die Farben aktiv sind
-            break;
-        case 5:
-            return $row['ngast'];         // Aktiv/Inakriv Farben für Name Gäste
-            break;
-        case 6:
-            return $row['tgast'];         // Aktiv/Inakriv Farben für Text Gäste
-            break;
-        case 7:
-            return $row['nuser'];         // Aktiv/Inakriv Farben für Name User
-            break;
-        case 8:
-            return $row['tuser'];         // Aktiv/Inakriv Farben für Text User
-            break;
-        case 9:
-            return $row['nadmin'];         // Aktiv/Inakriv Farben für Name Admin
-            break;
-        case 10:
-            return $row['tadmin'];         // Aktiv/Inakriv Farben für Text Admin
-            break;
-        case 11:
-            return $row['fngast'];         // Farben für Name Gäste
-            break;
-        case 12:
-            return $row['ftgast'];         // Farben für Text Gäste
-            break;
-        case 13:
-            return $row['fnuser'];         // Farben für Name User
-            break;
-        case 14:
-            return $row['ftuser'];         // Farben für Text User
-            break;
-        case 15:
-            return $row['fnadmin'];         // Farben für Name Admin
-            break;
-        case 16:
-            return $row['ftadmin'];         // Farben für Text Admin
-            break;
-        case 17:
-            return $row['smilies'];         // Prüft ob Smilies aktiv/Inaktiv
-            break;
-        case 18:
-            return $row['size'];            // Eingabefeldgröße
-            break;
-        case 19:
-            return $row['mtext'];           // Maximale Textlänge
-            break;
-        case 20:
-            return $row['gast'];           // Gäste aktiv/Inaktiv
-            break;
-        case 21:
-            return $row['format'];          // DatumFormat
-            break;
-        case 22:
-            return $row['spam'];           // SPAM
-            break;
-        case 23:
-            return $row['bbreite'];         // Breite der Box
-            break;
-        case 24:
-            return $row['baus'];           // Ausrichtung der Box
-            break;
-        case 25:
-            return $row['hfname'];          // Hintergrundfarbe vom namen
-            break;
-        case 26:
-            return $row['hftext'];           // Hintergrundfarbe vom text
-            break;
-        case 27:
-            return $row['hfinput'];          // Hintergrundfarbe vom inputfeld
-            break;
-        case 28:
-            return $row['ausr'];             // Aktiv/Inaktiv Eigene Ausrichtung
-            break;
-        case 29:
-            return $row['hgrund'];           // Aktiv/Inaktiv Eigene Hintergrundfarbe
-            break;
-        case 30:
-            return $row['aktivtext'];        // Text wenn Box inaktiv ist
-            break;
-        case 31:
-            return $row['bbfett'];        // BBcode Fett
-            break;
-        case 32:
-            return $row['bbkursiv'];        // BBcode Kursiv
-            break;
-        case 33:
-            return $row['bbunter'];        // BBcode Unterstrich
-            break;
-        case 34:
-            return $row['bblink'];        // BBcode Link
-            break;
-        }
+        $row = db_fetch_assoc(db_query('SELECT * FROM `prefix_shbox4config` WHERE id = "1"'));
+        return $row[$var];
     }
 
     function shgo(){
         $tpl = new tpl ('shbox4', 0);
-        $erg = db_query('SELECT * FROM `prefix_shbox4` ORDER BY `id` DESC LIMIT ' . $this->shconfig(0));
+        $erg = db_query('SELECT * FROM `prefix_shbox4` ORDER BY `id` DESC LIMIT '. $this->shconfig('ausgabe'));
         while ($row = db_fetch_assoc($erg)) {
             $text = $row['txt'];
             $text = $this->shtext($text);
-            if ($this->shconfig(28) == '1'){
-                $breite = $this->shconfig(23);
-                $baus   = $this->shconfig(24);
+            if ($this->shconfig('ausr') == '1'){
+                $breite = $this->shconfig('bbreite');
+                $baus   = $this->shconfig('baus');
             } else {
                 $breite = '100';
                 $baus   = 'center';
             }
-            if ($this->shconfig(29) == '1'){
-                $hf1   = 'bgcolor="#'.$this->shconfig(25).'"';
-                $hf2   = 'bgcolor="#'.$this->shconfig(26).'"';
+            if ($this->shconfig('hgrund') == '1'){
+                $hf1   = 'style="background-color:#'.$this->shconfig('hfname').'"';
+                $hf2   = 'style="background-color:#'.$this->shconfig('hftext').'"';
             } else {
-                $hf1   = '';
-                $hf2   = '';
+                $hf1   = 'class="Cdark"';
+                $hf2   = 'class="Cnorm"';
             }
                 $ar = array ( 'NAME'       => $this->shdate($row['time'],$row['uid']),
                               'TEXT'       => $this->colortext($this->sh_usercheck($row['uid']), $text),
@@ -158,24 +53,29 @@ class ShBox4 {
 
     function sharchiv () {
         $tpl = new tpl ('shbox4', 0);
-        echo '<table width="100%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
-               <tr class="Chead">
-                <td align="center">
-                 <h4>ShBox 4.0P Archiv</h4>
-                </td>
-               </tr>
-              </table><br />';
+        echo '<div>
+                 <h4 align="center" class="Chead">'.$this->version.' Archiv</h4>
+              </div>';
         $erg = db_query('SELECT * FROM `prefix_shbox4` ORDER BY `id` DESC');
         while ($row = db_fetch_assoc($erg)) {
             $text = $row['txt'];
             $text = $this->shtext($text);
-                $ar = array ( 'AUSGABE'       => '<td width="10%" class="Cdark">'.$this->shdate($row['time'],$row['uid']).'</td>
-                                                  <td width="" class="Cnorm">'.$this->colortext($this->sh_usercheck($row['uid']), $text).'</td>'
+                $ar = array ( 'AUSGABE'   => '<p class="Cdark" style="margin:0;">'.$this->shdate($row['time'],$row['uid']).'</p>
+                                              <p class="Cnorm" style="margin:0;">'.$this->colortext($this->sh_usercheck($row['uid']), $text).'</p>
+                                              <br />'
                 );
                 $tpl->set_ar_out($ar,2);
         }
+            $tpl->set_ar(array('VERS' => $this->version()));
+            $tpl->out(3);
     }
 
+/*
+##
+## TO-TO in bearbeitung
+##
+Adminberreich noch der Akzuellen Ilch 1.1Q Adminlayout Anpassen & Fixen
+*/
     function showadmin() {
         $erg = db_query('SELECT * FROM `prefix_shbox4` ORDER BY `id` DESC');
         $class = '';
@@ -184,16 +84,21 @@ class ShBox4 {
                 $var .= '<tr>
                          <td align="center" class="' . $class . '">' . $row['id'] . '.</td>
                          <td align="center" class="' . $class . '">' . $this->colorname($this->sh_usercheck($row['uid']), get_n($row['uid'])) . '</td>
-                         <td class="' . $class . '">' . date ($this->shconfig(21), $row['time'] ) . '</td>
+                         <td class="' . $class . '">' . date ($this->shconfig('format'), $row['time'] ) . '</td>
                          <td class="' . $class . '">' . BBcode(substr($row['txt'], 0, 70)) . '&nbsp;&nbsp;...</td>
-                         <td class="' . $class . '" align="center"><a href="?shbox4admin-show-edit-' . $row['id'] . '"><img src="include/images/icons/edit.gif" alt="bearbeiten" title="bearbeiten"></a></td>
-                         <td class="' . $class . '" align="center"><a href="admin.php?shbox4admin-show-del-' . $row['id'] . '"><img src="include/images/icons/del.gif" alt="löschen" title="löschen"></a>&nbsp;</td>
+                         <td class="' . $class . '" align="center"><a href="?shbox4admin-show-edit-' . $row['id'] . '" rel="tooltip" title="Eintrag Ändern"><span style="color:#2D9600;" class="glyphicon glyphicon-edit" aria-hidden="true"></a></td>
+                         <td class="' . $class . '" align="center"><a href="admin.php?shbox4admin-show-del-' . $row['id'] . '" rel="tooltip" title="Löschen"><span style="color:#AD0000;" class="glyphicon glyphicon-trash" aria-hidden="true"></a></td>
                         </tr>';
         }
         return $var;
     }
-    
-    function schowedit($gid) {
+
+/*
+#
+#Siehe TO-DO
+#
+*/
+    function showedit($gid) {
        $ed  = db_query('SELECT * FROM `prefix_shbox4` WHERE `id` = "' . $gid . '"');
        $e   = db_fetch_assoc($ed);
        return '<form action="?shbox4admin-show-send-'.$gid.'" method="POST">
@@ -209,48 +114,45 @@ class ShBox4 {
     }
 
     function eingabe() {
-        if ($this->shconfig(29) == '1'){
-            $ein   = 'style="background-color:#'.$this->shconfig(27).'"';
+        if ($this->shconfig('hgrund') == '1'){
+            $ein   = 'style="background-color:#'.$this->shconfig('hfinput').'"';
         } else {
             $ein   = '';
         }
         if (loggedin()) {
-            if ($this->shconfig(17) == '1') {
+            if ($this->shconfig('smilies') == '1') {
                 echo '<center>'.getsmilies().'<br />';
-                if ($this->shconfig(31) == '1') {
+                if ($this->shconfig('bbfett') == '1') {
                     echo '<a href="javascript:simple(\'b\')"><img src="include/images/icons/button.bold.gif" alt="Fett" border="0" /></a>';
                 }
-                if ($this->shconfig(32) == '1') {
+                if ($this->shconfig('bbkursiv') == '1') {
                     echo '<a href="javascript:simple(\'i\')"><img src="include/images/icons/button.italic.gif" alt="Kursiv" border="0" /></a>';
                 }
-                if ($this->shconfig(33) == '1') {
+                if ($this->shconfig('bbunter') == '1') {
                     echo '<a href="javascript:simple(\'u\')"><img src="include/images/icons/button.underline.gif" alt="Unterstrich" border="0" /></a>';
                 }
-                if ($this->shconfig(34) == '1') {
+                if ($this->shconfig('bblink') == '1') {
                     echo '<a href="javascript:simple(\'url\')"><img src="include/images/icons/button.link.gif" alt="Link" border="0" /></a>';
                 }
                 echo '</center>';
             }
             echo '<form autocomplete="off" style="display:inline" method="post" action="javascript: send();" id="form">
-                  <center>
-                  <input type="text" name="txt" '.$ein.' id="txt" autocomplete="off" size="'.$this->shconfig(18).'" maxlength="'.$this->shconfig(19).'" onselect="" onclick="" onkeyup="">
-                  </center>
+                  <input type="text" name="txt" '.$ein.' id="txt" autocomplete="off" size="'.$this->shconfig('size').'" maxlength="'.$this->shconfig('mtext').'" onselect="" onclick="" onkeyup="">
                   </form>';
-        } elseif ($this->shconfig(20) == '1') {
-            if ($this->shconfig(17) == '1') {
-                echo '<center>'.getsmilies().'</center>';
+        } elseif ($this->shconfig('gast') == '1') {
+            if ($this->shconfig('smilies') == '1') {
+                echo getsmilies();
             }
-            echo '<form autocomplete="off" style="display:inline" method="post" action="javascript: sendG();" id="form">
-                  <center>';
-            if ($this->shconfig(22) == '1') {
-                $text = 'Bitte Häckchen setzte, ansonsten wird ihr Eintrag nicht abgesendet';
+
+            echo '<form autocomplete="off" style="display:inline" method="post" action="javascript: sendG();" id="form">';
+            if ($this->shconfig('spam') == '1') {
+                $text = '<p>Bitte Häckchen setzte, ansonsten wird ihr Eintrag nicht abgesendet</p>';
                 echo 'SpamSchutz:<br />
                       <a href="" onmouseout="hideTooltip()" onmouseover="showTooltip(event,\''.$text.'\') ;return false"> ? </a>
                       <input type="checkbox" name="checkbox" id="checkbox" value="aktive" />
                       <br />';
             }
-            echo '<input type="text" name="txt" style="background-color:#'.$ein.'" id="txt" autocomplete="off" size="'.$this->shconfig(18).'" maxlength="'.$this->shconfig(19).'" onselect="" onclick="" onkeyup="">
-                  </center>
+            echo '<input type="text" name="txt" '.$ein.' id="txt" autocomplete="off" size="'.$this->shconfig('size').'" maxlength="'.$this->shconfig('mtext').'" onselect="" onclick="" onkeyup="">
                   </form>';
          }
     }
@@ -261,10 +163,10 @@ class ShBox4 {
         } else {
             $uid = '0';
         }
-        $posttxt = (isset($text)) ? escape($text, 'textarea') : '';
+        $posttxt = (isset($text)) ? escape($text, 'string') : '';
         $posttxt = strip_tags($posttxt);
         $posttxt = utf8_decode ($posttxt);
-        if ($this->shconfig(2) == '1') {
+        if ($this->shconfig('datum') == '1') {
             $time = time();
         } else {
             $time = '0';
@@ -277,7 +179,7 @@ class ShBox4 {
     }
 
     function shtext($text) {
-        if ($this->shconfig(17) == '1') {
+        if ($this->shconfig('smilies') == '1') {
             $tags = array('[img]', '[IMG]', '[/img]', '[/IMG]', '[url]', '[URL]', '[/URL]', '[URL]', '[color]', '[/color]');
             $tagsE = array ('/\[URL=http:\/\/(www\.)?(.*?)\](.*?)\[\/URL\]/si');
             $text = str_replace($tags, '', $text);
@@ -314,10 +216,10 @@ class ShBox4 {
         }
         return $var;
     }
-    
+
     function shdate($time, $uid) {
-        if ($this->shconfig(2) == '1') {
-            return '<a href="?user-details-'.$uid.'" style="text-decoration: none;" onmouseout="hideTooltip()" onmouseover="showTooltip(event,\''.date ($this->shconfig(21), $time ).'\') ;return false">'.$this->colorname($this->sh_usercheck($uid), get_n($uid)).'</a>:';
+        if ($this->shconfig('datum') == '1') {
+            return '<a href="?user-details-'.$uid.'" style="text-decoration: none;" onmouseout="hideTooltip()" onmouseover="showTooltip(event,\''.date ($this->shconfig(format), $time ).'\') ;return false">'.$this->colorname($this->sh_usercheck($uid), get_n($uid)).'</a>:';
         } else {
             return '<a href="?user-details-'.$uid.'" style="text-decoration: none;" onmouseout="hideTooltip()">'.$this->colorname($this->sh_usercheck($uid), get_n($uid)).'</a>:';
         }
@@ -342,25 +244,25 @@ class ShBox4 {
         if ($name == ''){
             $name = 'Gast';
         }
-        if ($this->shconfig(4) == '1') {
+        if ($this->shconfig('farbe') == '1') {
             if ($var == '0') {
                 $name = 'Gast';
-                if ($this->shconfig(5) == '1') {
-                    return '<span style="color:#'.$this->shconfig(11).';">'.$name.'</span>';
+                if ($this->shconfig('ngast') == '1') {
+                    return '<span style="color:#'.$this->shconfig('fngast').';">'.$name.'</span>';
                 } else {
                     return $name;
                 }
             }
             if ($var == '1') {
-                if ($this->shconfig(9) == '1') {
-                    return '<span style="color:#'.$this->shconfig(15).';">'.$name.'</span>';
+                if ($this->shconfig('nadmin') == '1') {
+                    return '<span style="color:#'.$this->shconfig('fnadmin').';">'.$name.'</span>';
                 } else {
                     return $name;
                 }
             }
             if ($var == '2') {
-                if ($this->shconfig(7) == '1') {
-                    return '<span style="color:#'.$this->shconfig(13).';">'.$name.'</span>';
+                if ($this->shconfig('nuser') == '1') {
+                    return '<span style="color:#'.$this->shconfig('fnuser').';">'.$name.'</span>';
                 } else {
                     return $name;
                 }
@@ -369,26 +271,26 @@ class ShBox4 {
             return $name;
         }
     }
-    
+
     function colortext($var,$text) {
-        if ($this->shconfig(4) == '1') {
+        if ($this->shconfig('farbe') == '1') {
             if ($var == '0') {
-                if ($this->shconfig(6) == '1') {
-                    return '<span style="color:#'.$this->shconfig(12).';">'.$text.'</span>';
+                if ($this->shconfig('tgast') == '1') {
+                    return '<span style="color:#'.$this->shconfig('ftgast').';">'.$text.'</span>';
                 } else {
                     return $text;
                 }
             }
             if ($var == '1') {
-                if ($this->shconfig(10) == '1') {
-                    return '<span style="color:#'.$this->shconfig(16).';">'.$text.'</span>';
+                if ($this->shconfig('tadmin') == '1') {
+                    return '<span style="color:#'.$this->shconfig('ftadmin').';">'.$text.'</span>';
                 } else {
                     return $text;
                 }
             }
             if ($var == '2') {
-                if ($this->shconfig(8) == '1') {
-                    return '<span style="color:#'.$this->shconfig(14).';">'.$text.'</span>';
+                if ($this->shconfig('tuser') == '1') {
+                    return '<span style="color:#'.$this->shconfig('ftuser').';">'.$text.'</span>';
                 } else {
                     return $text;
                 }
@@ -413,7 +315,7 @@ class ShBox4 {
              return false ;
          }
     }
-    
+
     function shfeld($var1,$var2,$var3){
         switch ($var3) {
             case 0:
@@ -427,7 +329,7 @@ class ShBox4 {
             break;
         }
     }
-    
+
     function shcheckbox($var,$aktiv,$var1,$name,$var2,$url,$var3) {
          if ($var == '1'){
              if ($aktiv == '1') {
@@ -449,11 +351,11 @@ class ShBox4 {
              return false ;
          }
     }
-    
-    //Ich Bitte freundlichs darum diese funktion nicht zu entfernen oder zu verändern
+
+    //Ich Bitte freundlichs darum diese function nicht zu entfernen oder zu verändern
     function version() {
         //$g_version = '4';   //HauptVersion
-        //$u_version = '000'; //Update/Fixes
+        //$u_version = '100'; //Update/Fixes
         //$i_version = 'P';   //Ilch Version 1.1 ...
         //check_version($url, $g_version, $u_version, $i_version);
         echo '<table width="85%" align="center" border="0" cellpadding="5" cellspacing="1" class="border"><tr class="Chead"><td align="center">'.$this->version.' 2009-20015 &copy B.Masmann Support: <a target="_blank" href="http://www.ilch.de">ilch.de</a></td></tr></table>';
