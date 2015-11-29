@@ -167,6 +167,9 @@ if (escape($menu->get(1), 'string') == 'show'){
     }
     $tpl->set_ar_out($ar,4);
 }
-$var->version();
+
+$tpl->set('VERSIONFO', $var->version() );
+$tpl->out(5); 
+
 $design->footer();
 ?>

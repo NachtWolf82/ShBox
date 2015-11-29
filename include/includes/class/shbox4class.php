@@ -353,12 +353,14 @@ Adminberreich noch der Akzuellen Ilch 1.1Q Adminlayout Anpassen & Fixen
     }
 
     //Ich Bitte freundlichs darum diese function nicht zu entfernen oder zu verändern
+    // Fix Anzeige no Table or return
     function version() {
         //$g_version = '4';   //HauptVersion
         //$u_version = '100'; //Update/Fixes
         //$i_version = 'P';   //Ilch Version 1.1 ...
         //check_version($url, $g_version, $u_version, $i_version);
-        echo '<table width="85%" align="center" border="0" cellpadding="5" cellspacing="1" class="border"><tr class="Chead"><td align="center">'.$this->version.' 2009-20015 &copy B.Masmann Support: <a target="_blank" href="http://www.ilch.de">ilch.de</a></td></tr></table>';
+        $vers= $this->version.' 2009-20015 &copy B.Masmann Support: <a target="_blank" href="http://www.ilch.de">ilch.de</a>';
+        return $vers;
     }
 }
 ?>
