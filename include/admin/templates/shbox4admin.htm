@@ -1,0 +1,218 @@
+<table width="85%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
+ <tr class="Chead">
+  <td align="center">
+   <h2>ShBox 4.0P Einstellungen</h2>
+  </td>
+ </tr>
+ 
+  <table width="85%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
+   <tr align="center" class="Cmite">
+    <th align="center" class="Cmite"><a href="?shbox4admin-allg">Grundeinstellungen</a></th>
+    <th align="center" class="Cmite"><a href="?shbox4admin-style">Style</a></th>
+    {FARBE}
+    <th align="center" class="Cmite"><a href="?shbox4admin-show">Einträge</a></th>
+   </tr>
+  </table>
+ </tr>
+</table>
+<br />
+{EXPLODE}
+
+<table width="85%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
+ <tr class="Chead">
+  <td align="center">
+   <p>GrundEinstellungen</p>
+  </td>
+ </tr>
+ <tr class="Cmite">
+  <td align="center">
+   <table width="100%" border="0" cellpadding="2" cellspacing="1" class="border">
+    <tr align="center" class="Chead">
+     <td align="center" class="Cmite">{AKTIV}</td>
+     <td align="center" class="Cmite">{GAST}</td>
+     <td align="center" class="Cmite">{RELOAD}</td>
+     <td align="center" class="Cmite">{DATUM}</td>
+     <td align="center" class="Cmite">{FARBEN}</td>
+     <td align="center" class="Cmite">{SPAM}</td>
+     <td align="center" class="Cmite">{SMILIES}</td>
+    </tr>
+   </table>
+   <br />
+   <table width="50%" border="0" align="center" cellpadding="2" cellspacing="1" class="border">
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">Text Wenn Box Deaktiviert</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN11}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="aktivtext" size="20" maxlength="255" value="{AKTIVTEXT}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">ReloadTime <i>(1000 = 1sek.)</i></td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN1}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="time" size="10" maxlength="5" value="{RTIME}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">Ausgabe</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN2}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="ausgabe" size="10" maxlength="3" value="{AUSGABE}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">DatumFormat</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN3}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="format" size="10" maxlength="20" value="{DATUMF}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">Große des Eingabefeldes</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN4}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="size" size="10" maxlength="20" value="{SIZE}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">Maximale Textlänge</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN5}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="mtext" size="10" maxlength="20" value="{MTEXT}" /></td>
+     </form>
+    </tr>
+    
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">BBcode</td>
+     <td align="center" class="Cmite">
+     {BBFETT}
+     {BBKURSIV}
+     {BBUNTER}
+     {BBLINK}
+     </td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+</table>
+<br />
+
+{EXPLODE}
+
+<table width="85%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
+ <tr class="Chead">
+  <td align="center">
+   <p>Farben</p>
+  </td>
+ </tr>
+ <tr class="Cmite">
+  <td align="center">
+   <table width="100%" border="0" cellpadding="2" cellspacing="1" class="border">
+    <tr align="center" class="Chead">
+     <td align="center" class="Cmite">{GASTNAME}</td>
+     <td align="center" class="Cmite">{GASTTEXT}</td>
+     <td align="center" class="Cmite">{USERNAME}</td>
+     <td align="center" class="Cmite">{USERTEXT}</td>
+     <td align="center" class="Cmite">{ADMINNAME}</td>
+     <td align="center" class="Cmite">{ADMINTEXT}</td>
+    </tr>
+   </table>
+   <br />
+
+   <table width="30%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
+    <tr class="Chead">
+     <td align="center">
+      <p>Farben</p>
+     </td>
+    </tr>
+    <tr class="Cmite">
+     <td align="center">
+      <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" class="border">
+       {NGAST}
+       {TGAST}
+       {NUSER}
+       {TUSER}
+       {NADMIN}
+       {TADMIN}
+      </table>
+     </td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+</table>
+<br />
+
+{EXPLODE}
+
+<table width="85%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
+ <tr class="Chead">
+  <td align="center">
+   <p>Eigene Anpassungen</p>
+  </td>
+ </tr>
+ <tr class="Cmite">
+  <td align="center">
+   <table width="100%" border="0" cellpadding="2" cellspacing="1" class="border">
+    <tr align="center" class="Chead">
+     <td align="center" class="Cmite">{AUSRICHTUNG}</td>
+     <td align="center" class="Cmite">{HINTERGRUND}</td>
+    </tr>
+   </table>
+   <br />
+
+   <table width="30%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
+    <tr class="Chead">
+     <td align="center">
+      <p>Aurichtung der Box</p>
+     </td>
+    </tr>
+    <tr class="Cmite">
+     <td align="center">
+      <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" class="border">
+        {BBREITE}
+        {BAUS}
+        {HFNAME}
+        {HFTEXT}
+        {HFINPUT}
+      </table>
+     </td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+</table>
+<br />
+
+{EXPLODE}
+
+<table width="85%" align="center" border="0" cellpadding="2" cellspacing="1" class="border">
+ <tr class="Chead">
+  <td align="center">
+   <h3>Einträge Löschen & Bearbeiten</h3>
+  </td>
+ </tr>
+ <tr class="Cmite">
+  <td align="center">
+   <table width="100%" border="0" cellpadding="2" cellspacing="1" class="border">
+    <tr align="center" class="Cdark">
+     <td align="center" class="Chead" width="30"><b>DB.Id</b></td>
+     <td align="center" class="Chead" width="10%"><b>Name</b></td>
+     <td align="center" class="Chead" width="15%"><b>Datum/Zeit</b></td>
+     <td align="center" class="Chead"><b>Text</b></td>
+     <td align="center" class="Chead" width="5%"><b>Bearbeiten</b></td>
+     <td align="center" class="Chead" width="5%"><b>Löschen</b></td>
+    </tr>
+     {EDIT}
+     {LISTE}
+   </table>
+  </td>
+ </tr>
+</table>
+<br />

@@ -1,0 +1,105 @@
+<form action="admin.php?install-1" method="POST">
+<table width="97%" class="border" border="0" cellspacing="1" cellpadding="3" align="center">
+ <tr class="Chead">
+  <td align="center">
+   <h2><strong>I&nbsp;n&nbsp;s&nbsp;t&nbsp;a&nbsp;l&nbsp;l&nbsp;a&nbsp;t&nbsp;i&nbsp;o&nbsp;n</strong>
+       <center><i>{SNAME}&nbsp;-&nbsp;{SVERSION}&nbsp;by&nbsp;{ENTWICK}</i></center>
+   </h2>
+  </td>
+ </tr>
+ <tr class="Cmite">
+  <td align="center">
+   <br />
+   <div style="margin-left:60px; text-align:center;">
+   <strong><u>Informationen:</u></strong>
+   <br /><br />
+   <strong>Modulname:</strong> {SNAME}
+   <br />
+   <strong>Version:</strong> {SVERSION}
+   <br />
+   <strong>Entwickler:</strong> {ENTWICK}
+   <br />
+   <strong>Installations Variante:</strong> {VARIANTE}
+   <br />
+   <br /><br />
+   Entwickelt f&uuml;r ilchClan Version <strong>{IVERSION} {IUPDATE}</strong>.
+   <br /><br />
+   <i>Andere Versionen k&ouml;nnen eventuell Fehler verursachen!</i>
+   </div>
+   <br /><hr /><br />
+   <center><b>Bitte vorher Lesen: </b><br /><span style="text-decoration:underline;"><i>(ScriptInformationen & Installationsanweisung & AGB)</i></span></center><br />
+   <iframe align="center" width="50%" height="200" src="include/admin/{README}" name="">Ihr Browser unterstützt keine Frames! Bitte die Readme Lesen und beachten</iframe>
+   <br /><hr /><br />
+   <div style="margin-left:60px; text-align:center;">
+   <strong><u>Wichtig:</u></strong>
+   <br /><br />
+   Machen Sie <b>Bitte unbedingt</b> zuerst ein <a href="admin.php?backup" target="_blank" style="font-style:italic; font-weight:bold;">Backup</a> Ihrer Datenbank!
+   <br /><br />
+   </div>
+  </td>
+ </tr>
+ <tr class="Cdark">
+  <td align="center">
+   <input type="submit" value="Fortfahren >>" />
+  </td>
+ </tr>
+</table>
+</form>
+
+{EXPLODE}
+
+<table width="97%" class="border" border="0" cellspacing="1" cellpadding="3" align="center">
+ <tr class="Chead">
+  <td align="center">
+   <h2><strong>I&nbsp;n&nbsp;s&nbsp;t&nbsp;a&nbsp;l&nbsp;l&nbsp;a&nbsp;t&nbsp;i&nbsp;o&nbsp;n&nbsp;&nbsp;SCHRITT&nbsp;1</strong>
+       <center><i>{SNAME}&nbsp;-&nbsp;{SVERSION}&nbsp;by&nbsp;{ENTWICK}</i></center>
+   </h2>
+  </td>
+ </tr>
+ <tr class="Cmite">
+  <td align="center">
+   <br />
+   <div style="margin-left:60px; text-align:left;">
+   <strong><u>Kompatibilität prüfen:</u></strong>
+   <br /><br />
+   <strong>{TEXT}</strong>
+   <br /><hr /><br />
+   <div style="text-align:center;"><strong>Installations Variante:</strong><br /> {VARIANTE}</div>
+   <br />
+  </td>
+ </tr>
+ <tr class="Cdark">
+  <td align="center">
+   <form action="admin.php?install" method="POST">
+    <input type="submit" value="<< Abbrechen" />
+   </form>
+  </td>
+ </tr>
+</table>
+
+{EXPLODE}
+
+<table width="97%" class="border" border="0" cellspacing="1" cellpadding="3" align="center">
+ <tr class="Chead">
+  <td align="center">
+   <h2><strong>I&nbsp;n&nbsp;s&nbsp;t&nbsp;a&nbsp;l&nbsp;l&nbsp;a&nbsp;t&nbsp;i&nbsp;o&nbsp;n&nbsp;&nbsp;SCHRITT&nbsp;2</strong>
+       <center><i>{SNAME}&nbsp;-&nbsp;{SVERSION}&nbsp;by&nbsp;{ENTWICK}</i></center>
+   </h2>
+  </td>
+ </tr>
+ <tr class="Cmite">
+  <td align="center">
+   <br />
+   <div style="margin-left:60px; text-align:center;">
+   <strong><u>Ergebniss:</u></strong>
+   <br /><br />
+   <strong>{TEXT}</strong>
+    <br />
+  </td>
+ </tr>
+ <tr class="Cdark">
+  <td align="center">
+   <br /><br />
+  </td>
+ </tr>
+</table>
