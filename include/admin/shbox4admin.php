@@ -22,15 +22,15 @@ $var = NEW ShBox4();
 $tpl = new tpl('shbox4admin',1);
 
 if ($var->shconfig('farbe') == '1') {
-    $ar  = array(
-            'VERSION' => $var->version,
-            'FARBE'   => '<a href="?shbox4admin-farben" class="btn btn-primary">Farben</a>'
+    $ar = array(
+        'VERSION' => $var->version,
+        'FARBE'   => '<a href="?shbox4admin-farben" class="btn btn-primary">Farben</a>'
     );
     $tpl->set_ar_out($ar,0);
 }else {
-    $ar  = array(
-            'VERSION' => $var->version,
-            'FARBE'   => ''
+    $ar = array(
+        'VERSION' => $var->version,
+        'FARBE'   => ''
     );
     $tpl->set_ar_out($ar,0);
 }
@@ -87,29 +87,29 @@ if (escape($menu->get(1), 'string') == 'allg'){
     $row = db_fetch_assoc($erg);
     $url = 'allg';
     $ar  = array(
-        'AKTIV'               => $var->check_var('aktiv', 'Aktiv', $row['aktiv'],$url),
-        'GAST'                => $var->check_var('gast', 'Gast', $row['gast'],$url),
-        'RELOAD'              => $var->check_var('reload', 'Reload', $row['reload'],$url),
-        'DATUM'               => $var->check_var('datum', 'Datum', $row['datum'],$url),
-        'FARBEN'              => $var->check_var('farbe', 'Farben', $row['farbe'],$url),
-        'SPAM'                => $var->check_var('spam', 'SPAM', $row['spam'],$url),
-        'SMILIES'             => $var->check_var('smilies', 'Smilies & BBcode', $row['smilies'],$url),
-        'RTIME'               => $row['time'],
-        'DBN1'                => 'time',
-        'AKTIVTEXT'           => $row['aktivtext'],
-        'DBN11'               => 'aktivtext',
-        'AUSGABE'             => $row['ausgabe'],
-        'DBN2'                => 'ausgabe',
-        'DATUMF'              => $row['format'],
-        'DBN3'                => 'format',
-        'SIZE'                => $row['size'],
-        'DBN4'                => 'size',
-        'MTEXT'               => $row['mtext'],
-        'DBN5'                => 'mtext',
-        'BBFETT'              => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbfett'), 'bbfett', 'Fett', $row['bbfett'], $url, 'bold'),
-        'BBKURSIV'            => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbkursiv'), 'bbkursiv', 'Kursiv', $row['bbkursiv'], $url, 'italic'),
-        'BBUNTER'             => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbunter'), 'bbunter', 'Unterstrich', $row['bbunter'], $url, 'underline'),
-        'BBLINK'              => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bblink'), 'bblink', 'Link', $row['bblink'], $url, 'link')
+        'AKTIV'        => $var->check_var('aktiv', 'Aktiv', $row['aktiv'],$url),
+        'GAST'         => $var->check_var('gast', 'Gast', $row['gast'],$url),
+        'RELOAD'       => $var->check_var('reload', 'Reload', $row['reload'],$url),
+        'DATUM'        => $var->check_var('datum', 'Datum', $row['datum'],$url),
+        'FARBEN'       => $var->check_var('farbe', 'Farben', $row['farbe'],$url),
+        'SPAM'         => $var->check_var('spam', 'SPAM', $row['spam'],$url),
+        'SMILIES'      => $var->check_var('smilies', 'Smilies & BBcode', $row['smilies'],$url),
+        'RTIME'        => $row['time'],
+        'DBN1'         => 'time',
+        'AKTIVTEXT'    => $row['aktivtext'],
+        'DBN11'        => 'aktivtext',
+        'AUSGABE'      => $row['ausgabe'],
+        'DBN2'         => 'ausgabe',
+        'DATUMF'       => $row['format'],
+        'DBN3'         => 'format',
+        'SIZE'         => $row['size'],
+        'DBN4'         => 'size',
+        'MTEXT'        => $row['mtext'],
+        'DBN5'         => 'mtext',
+        'BBFETT'       => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbfett'), 'bbfett', 'Fett', $row['bbfett'], $url, 'bold'),
+        'BBKURSIV'     => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbkursiv'), 'bbkursiv', 'Kursiv', $row['bbkursiv'], $url, 'italic'),
+        'BBUNTER'      => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbunter'), 'bbunter', 'Unterstrich', $row['bbunter'], $url, 'underline'),
+        'BBLINK'       => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bblink'), 'bblink', 'Link', $row['bblink'], $url, 'link')
     );
     $tpl->set_ar_out($ar,1);
 }
