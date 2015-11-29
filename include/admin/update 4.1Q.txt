@@ -1,0 +1,14 @@
+Das Update dient überwiegend der Anpassung ans Ilch CMS 1.1Q und es wurden bisher einige kleine Fehler behoben.
+
+
+Installation:
+Beim Update ist die ausführung der installation nicht nötig.
+
+Update Log:
+
+29.11.2015:
+
+* Teil Anpassung ans das Ilch Update 1.1Q;
+* Classe wurde abgeändert und in den entsprechenden Files angepasst;
+* Templates wurde abgespeckt und den Einstellungen Angepasst;
+* Darstellungsfehler Behoben;
