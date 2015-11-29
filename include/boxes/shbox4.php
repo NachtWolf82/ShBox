@@ -23,7 +23,7 @@ if ($var->shconfig('aktiv') == '1') {
     <script type="text/javascript" src="include/includes/js/bbcode.js" /></script>
     <script language="JavaScript" type="text/javascript" />
         window.onload = "fetch()";
-        interval = window.setInterval("fetch();", '. $var->shconfig('time').');
+        interval = window.setInterval("fetch();", '.$var->shconfig('time').');
     </script>';
 
     if ($menu->get(0) == 'forum' || $menu->get(0) == 'gbook') {
