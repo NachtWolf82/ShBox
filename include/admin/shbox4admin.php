@@ -3,7 +3,7 @@
 Script       => ShBox 4.1
 Ilch Version => 1.1Q
 Entwickler   => NachtWolf / B.Masmann
-Date         => 27.11.15
+Date         => 30.11.15
 Seite/Sup.   => http://www.ilch.de
                 http://www.nf-projekt.de
 Kontakt      => Masmann82@gmx.de
@@ -22,15 +22,15 @@ $var = NEW ShBox4();
 $tpl = new tpl('shbox4admin',1);
 
 if ($var->shconfig('farbe') == '1') {
-    $ar = array(
-        'VERSION' => $var->version,
-        'FARBE'   => '<a href="?shbox4admin-farben" class="btn btn-primary">Farben</a>'
+    $ar  = array(
+            'VERSION' => $var->version,
+            'FARBE'   => '<a href="?shbox4admin-farben" class="btn btn-primary">Farben</a>'
     );
     $tpl->set_ar_out($ar,0);
 }else {
-    $ar = array(
-        'VERSION' => $var->version,
-        'FARBE'   => ''
+    $ar  = array(
+            'VERSION' => $var->version,
+            'FARBE'   => ''
     );
     $tpl->set_ar_out($ar,0);
 }
@@ -87,29 +87,29 @@ if (escape($menu->get(1), 'string') == 'allg'){
     $row = db_fetch_assoc($erg);
     $url = 'allg';
     $ar  = array(
-        'AKTIV'        => $var->check_var('aktiv', 'Aktiv', $row['aktiv'],$url),
-        'GAST'         => $var->check_var('gast', 'Gast', $row['gast'],$url),
-        'RELOAD'       => $var->check_var('reload', 'Reload', $row['reload'],$url),
-        'DATUM'        => $var->check_var('datum', 'Datum', $row['datum'],$url),
-        'FARBEN'       => $var->check_var('farbe', 'Farben', $row['farbe'],$url),
-        'SPAM'         => $var->check_var('spam', 'SPAM', $row['spam'],$url),
-        'SMILIES'      => $var->check_var('smilies', 'Smilies & BBcode', $row['smilies'],$url),
-        'RTIME'        => $row['time'],
-        'DBN1'         => 'time',
-        'AKTIVTEXT'    => $row['aktivtext'],
-        'DBN11'        => 'aktivtext',
-        'AUSGABE'      => $row['ausgabe'],
-        'DBN2'         => 'ausgabe',
-        'DATUMF'       => $row['format'],
-        'DBN3'         => 'format',
-        'SIZE'         => $row['size'],
-        'DBN4'         => 'size',
-        'MTEXT'        => $row['mtext'],
-        'DBN5'         => 'mtext',
-        'BBFETT'       => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbfett'), 'bbfett', 'Fett', $row['bbfett'], $url, 'bold'),
-        'BBKURSIV'     => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbkursiv'), 'bbkursiv', 'Kursiv', $row['bbkursiv'], $url, 'italic'),
-        'BBUNTER'      => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbunter'), 'bbunter', 'Unterstrich', $row['bbunter'], $url, 'underline'),
-        'BBLINK'       => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bblink'), 'bblink', 'Link', $row['bblink'], $url, 'link')
+        'AKTIV'               => $var->check_var('aktiv', 'Aktiv', $row['aktiv'],$url),
+        'GAST'                => $var->check_var('gast', 'Gast', $row['gast'],$url),
+        'RELOAD'              => $var->check_var('reload', 'Reload', $row['reload'],$url),
+        'DATUM'               => $var->check_var('datum', 'Datum', $row['datum'],$url),
+        'FARBEN'              => $var->check_var('farbe', 'Farben', $row['farbe'],$url),
+        'SPAM'                => $var->check_var('spam', 'SPAM', $row['spam'],$url),
+        'SMILIES'             => $var->check_var('smilies', 'Smilies & BBcode', $row['smilies'],$url),
+        'RTIME'               => $row['time'],
+        'DBN1'                => 'time',
+        'AKTIVTEXT'           => $row['aktivtext'],
+        'DBN11'               => 'aktivtext',
+        'AUSGABE'             => $row['ausgabe'],
+        'DBN2'                => 'ausgabe',
+        'DATUMF'              => $row['format'],
+        'DBN3'                => 'format',
+        'SIZE'                => $row['size'],
+        'DBN4'                => 'size',
+        'MTEXT'               => $row['mtext'],
+        'DBN5'                => 'mtext',
+        'BBFETT'              => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbfett'), 'bbfett', 'Fett', $row['bbfett'], $url, 'bold'),
+        'BBKURSIV'            => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbkursiv'), 'bbkursiv', 'Kursiv', $row['bbkursiv'], $url, 'italic'),
+        'BBUNTER'             => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bbunter'), 'bbunter', 'Unterstrich', $row['bbunter'], $url, 'underline'),
+        'BBLINK'              => $var->shcheckbox($var->shconfig('smilies'), $var->shconfig('bblink'), 'bblink', 'Link', $row['bblink'], $url, 'link')
     );
     $tpl->set_ar_out($ar,1);
 }
@@ -151,25 +151,39 @@ if (escape($menu->get(1), 'string') == 'style'){
     $tpl->set_ar_out($ar,3);
 }
 
-if (escape($menu->get(1), 'string') == 'show'){
-    $men = escape($menu->get(2), 'string');
-    switch ($men) {
-        case 'edit':
-        $ar  = array('EDIT'          => $var->schowedit(escape($menu->get(3), 'string')),
-                     'LISTE'         => $var->showadmin()
-        );
-        break;
-        default:
-        $ar  = array('EDIT'          => '',
-                     'LISTE'         => $var->showadmin()
-        );
-        break;
-    }
-    $tpl->set_ar_out($ar,4);
+if (escape($menu->get(1), 'string') == 'show' || escape($menu->get(1), 'string') == '') {
+    $tpl->out(4);
+        $erg = db_query('SELECT * FROM `prefix_shbox4` ORDER BY `id` DESC');
+        while ($row = db_fetch_assoc($erg)) {
+            $ar  = array('ID'      => $row['id'],
+                         'NAME'    => $var->colorname($var->sh_usercheck($row['uid']), get_n($row['uid'])),
+                         'TEXTNOBB'=> $row['txt'],
+                         'TEXT'    => BBcode(substr($row['txt'], 0, 70))
+            );
+        $tpl->set_ar_out($ar,5);
+        }
+    $tpl->out(6);
 }
 
+/*
+    function showedit($gid) {
+       $ed  = db_query('SELECT * FROM `prefix_shbox4` WHERE `id` = "' . $gid . '"');
+       $e   = db_fetch_assoc($ed);
+       return '<form action="?shbox4admin-show-send-'.$gid.'" method="POST">
+             <tr>
+              <td style="background-color:#FF0000">' . $e['id'] . '</td>
+              <td style="background-color:#FF0000">' . get_n($e['uid']) . '</td>
+              <td style="background-color: #FF0000">' . date ('d.m.Y - H:i:s', $e['time'] ) . '</td>
+              <td style="background-color:#FF0000"><textarea name="edittxt" rows="2" cols="50" wrap="virtual">' . $e['txt'] . '</textarea></td>
+              <td style="background-color: #FF0000" align="center"><input name="subedit" type="submit" value="ändern" /></td>
+              <td style="background-color: #FF0000" align="center">&nbsp;</td>
+             </tr>
+            </form>';
+    }
+*/
+
 $tpl->set('VERSIONFO', $var->version() );
-$tpl->out(5); 
+$tpl->out(7); 
 
 $design->footer();
 ?>

@@ -1,4 +1,14 @@
 <!-- TPL 0 -->
+<script language="JavaScript" type="text/javascript">
+<!--
+    function toggleDiv(element) {
+        if (document.getElementById(element).style.display == 'none')
+            document.getElementById(element).style.display = 'block';
+        else
+            document.getElementById(element).style.display = 'none';
+    }
+//-->
+</script>
 <legend><h2>{VERSION}<small> Einstellungen</small></h2></legend>
 <div class="row">
     <div class="col-md-8">
@@ -12,31 +22,201 @@
 
 {EXPLODE}
 <!-- TPL 1 -->
+        <legend>Grundeinstellungen</legend>
+        <div class="panel panel-default" style="overflow-x:auto;overflow-y:hidden;">
+         <div class="panel-body">
+   <table width="100%" border="0" cellpadding="2" cellspacing="1" class="border">
+    <tr align="center" class="Chead">
+     <td align="center" class="Cmite">{AKTIV}</td>
+     <td align="center" class="Cmite">{GAST}</td>
+     <td align="center" class="Cmite">{RELOAD}</td>
+     <td align="center" class="Cmite">{DATUM}</td>
+     <td align="center" class="Cmite">{FARBEN}</td>
+     <td align="center" class="Cmite">{SPAM}</td>
+     <td align="center" class="Cmite">{SMILIES}</td>
+    </tr>
+   </table>
+         </div>
+        </div>
+
+        <legend>Ausrichtung der Box</legend>
+        <div class="panel panel-default" style="overflow-x:auto;overflow-y:hidden;">
+         <div class="panel-body">
+   <table width="50%" border="0" align="center" cellpadding="2" cellspacing="1" class="border">
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">Text Wenn Box Deaktiviert</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN11}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="aktivtext" size="20" maxlength="255" value="{AKTIVTEXT}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">ReloadTime <i>(1000 = 1sek.)</i></td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN1}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="time" size="10" maxlength="5" value="{RTIME}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">Ausgabe</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN2}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="ausgabe" size="10" maxlength="3" value="{AUSGABE}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">DatumFormat</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN3}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="format" size="10" maxlength="20" value="{DATUMF}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">Große des Eingabefeldes</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN4}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="size" size="10" maxlength="20" value="{SIZE}" /></td>
+     </form>
+    </tr>
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">Maximale Textlänge</td>
+     <td align="center" class="Cmite">
+     <form method="post" action="admin.php?shbox4admin-updates-{DBN5}" id="form">
+     <input type="hidden" name="url" id="url" value="allg" />
+     <input name="mtext" size="10" maxlength="20" value="{MTEXT}" /></td>
+     </form>
+    </tr>
+
+    <tr align="center" class="Chead">
+     <td align="center" class="Chead">BBcode</td>
+     <td align="center" class="Cmite">
+     {BBFETT}
+     {BBKURSIV}
+     {BBUNTER}
+     {BBLINK}
+     </td>
+    </tr>
+   </table>
+
+         </div>
+        </div>
 
 {EXPLODE}
-<!-- TPL 2 -->
+<!-- TPL 2 {FARBEN} -->
+        <legend>Eigene Anpassung</legend>
+        <div class="panel panel-default" style="overflow-x:auto;overflow-y:hidden;">
+         <div class="panel-body">
+          <table width="100%" border="0" cellpadding="2" cellspacing="1" class="border">
+           <tr align="center" class="Chead">
+            <td align="center" class="Cmite">{GASTNAME}</td>
+            <td align="center" class="Cmite">{GASTTEXT}</td>
+            <td align="center" class="Cmite">{USERNAME}</td>
+            <td align="center" class="Cmite">{USERTEXT}</td>
+            <td align="center" class="Cmite">{ADMINNAME}</td>
+            <td align="center" class="Cmite">{ADMINTEXT}</td>
+           </tr>
+          </table>
+         </div>
+        </div>
+        
+        <legend>Ausrichtung der Box</legend>
+        <div class="panel panel-default" style="overflow-x:auto;overflow-y:hidden;">
+         <div class="panel-body">
+          <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" class="border">
+           {NGAST}
+           {TGAST}
+           {NUSER}
+           {TUSER}
+           {NADMIN}
+           {TADMIN}
+          </table>
+         </div>
+        </div>
 
 {EXPLODE}
-<!-- TPL 3 -->
+<!-- TPL 3 {STYLE}-->
+        <legend>Eigene Anpassung</legend>
+        <div class="panel panel-default" style="overflow-x:auto;overflow-y:hidden;">
+         <div class="panel-body">
+          <table width="100%" border="0" cellpadding="2" cellspacing="1" class="border">
+           <tr align="center" class="Chead">
+            <td align="center" class="Cmite">{AUSRICHTUNG}</td>
+            <td align="center" class="Cmite">{HINTERGRUND}</td>
+           </tr>
+          </table>
+         </div>
+        </div>
+        
+        <legend>Ausrichtung der Box</legend>
+        <div class="panel panel-default" style="overflow-x:auto;overflow-y:hidden;">
+         <div class="panel-body">
+          <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" class="border">
+           {BBREITE}
+           {BAUS}
+           {HFNAME}
+           {HFTEXT}
+           {HFINPUT}
+          </table>
+         </div>
+        </div>
 
 {EXPLODE}
-<!-- Start ShowBox -->
 <!-- TPL 4 -->
-
+        <legend>Einträge</legend>
+        <div class="panel panel-default" style="overflow-x:auto;overflow-y:hidden;">
+         <div class="panel-body">
+   <table class="table table-striped">
+    <tr class="success">
+     <td class="text-center"><b>Eintrag</b></td>
+     <td class="text-center"><b>Bearbeiten</b></td>
+    </tr>
+{EXPLODE}
+<!-- TPL 5 -->
+  <tr>
+    <td>
+     <b>{ID}.</b>{NAME}&nbsp;&nbsp;<b>=>></b>&nbsp;&nbsp;{TEXT}&nbsp;&nbsp;...</td>
+    <td>
+      <a href="javascript:toggleDiv('toggle_{ID}');" rel="tooltip" title="Eintrag Ändern"><span style="color:#2D9600;" class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+      <a href="admin.php?shbox4admin-show-del-{ID}" rel="tooltip" title="Löschen"><span style="color:#AD0000;" class="glyphicon glyphicon-trash" aria-hidden="true"></a>
+      <a href="#{ID}" rel="tooltip" title="nach oben verschieben"><span style="color:#C64F00;" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
+      <a href="#{ID}" rel="tooltip" title="nach unten verschieben"><span style="color:#C64F00;" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
+     </td>
+    </tr>
+<div id="toggle_{ID}" style="display:none;">
+<form action="?shbox4admin-show-send-{ID}" method="POST">
+              <span>{ID}{NAME}</span>
+              <span>
+               <textarea name="edittxt" rows="2" cols="50" wrap="virtual">{TEXTNOBB}</textarea>
+               <input name="subedit" type="submit" value="ändern" />
+              </span>
+            </form>
+</div>
+{EXPLODE}
+<!-- TPL 6 -->
+   </table>
+  </td>
+ </tr>
+</table>
+         </div>
+        </div>
 
 
 {EXPLODE}
 <!-- Start Info & Copyright -->
-<!-- TPL 5 -->
-
+<!-- TPL 7 -->
 <div class="alert alert-info" role="alert">
     <h4>Info</h4>
     Hier können Sie ihre ShBox nach ihren wünschen einstellen sowie Einträge Bearbeiten, Löschen
     oder auch verschieben.
     In den Einstellungen werden die änderungen jeweils mit ENTER bestätigt.
-    <br><br>
+    <br>
     Sollten Sie Probleme mit der ShBox haben oder Sie haben Ideen zur Verbesserung des Modules
     wendet euch an das Forum von Ilch.de oder an nf-projekt.de.
-    <br><br><br>
+    <br><br>
     <center>{VERSIONFO}</center>
 </div>

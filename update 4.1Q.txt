@@ -6,6 +6,18 @@ Installation:
 Beim Update ist die ausführung der installation nicht nötig.
 
 
+TO-DO:
+* Adminberreich verschiebefunktion noch einfügen!!;
+
+
+Update Log:
+
+30.11.2015:
+
+* Admin ShowEinträge Layout angepasst;
+* Adminbereich Angefangen anzupassen 40%;
+* Weitere unnötige functionen entfernt und direkt eingearbeitet;
+
 
 Update Log:
 
@@ -20,5 +32,5 @@ Update Log:
 
 * Darstellungsfehler Behoben;
 
-* Adminberreich Angefangen anzupassen 20%;
+* Adminbereich Angefangen anzupassen 20%;
 * Function Version Angepasst;
