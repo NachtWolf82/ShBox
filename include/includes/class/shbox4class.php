@@ -3,7 +3,7 @@
 Script       => ShBox 4.1
 Ilch Version => 1.1Q
 Entwickler   => NachtWolf / B.Masmann
-Date         => 27.11.15
+Date         => 30.11.15
 Seite/Sup.   => http://www.ilch.de
                 http://www.nf-projekt.de
 Kontakt      => Masmann82@gmx.de
@@ -68,49 +68,6 @@ class ShBox4 {
         }
             $tpl->set_ar(array('VERS' => $this->version()));
             $tpl->out(3);
-    }
-
-/*
-##
-## TO-TO in bearbeitung
-##
-Adminberreich noch der Akzuellen Ilch 1.1Q Adminlayout Anpassen & Fixen
-*/
-    function showadmin() {
-        $erg = db_query('SELECT * FROM `prefix_shbox4` ORDER BY `id` DESC');
-        $class = '';
-        while ($row = db_fetch_assoc($erg)) {
-            $class = ($class == 'Cmite' ? 'Cnorm' : 'Cmite' );
-                $var .= '<tr>
-                         <td align="center" class="' . $class . '">' . $row['id'] . '.</td>
-                         <td align="center" class="' . $class . '">' . $this->colorname($this->sh_usercheck($row['uid']), get_n($row['uid'])) . '</td>
-                         <td class="' . $class . '">' . date ($this->shconfig('format'), $row['time'] ) . '</td>
-                         <td class="' . $class . '">' . BBcode(substr($row['txt'], 0, 70)) . '&nbsp;&nbsp;...</td>
-                         <td class="' . $class . '" align="center"><a href="?shbox4admin-show-edit-' . $row['id'] . '" rel="tooltip" title="Eintrag Ändern"><span style="color:#2D9600;" class="glyphicon glyphicon-edit" aria-hidden="true"></a></td>
-                         <td class="' . $class . '" align="center"><a href="admin.php?shbox4admin-show-del-' . $row['id'] . '" rel="tooltip" title="Löschen"><span style="color:#AD0000;" class="glyphicon glyphicon-trash" aria-hidden="true"></a></td>
-                        </tr>';
-        }
-        return $var;
-    }
-
-/*
-#
-#Siehe TO-DO
-#
-*/
-    function showedit($gid) {
-       $ed  = db_query('SELECT * FROM `prefix_shbox4` WHERE `id` = "' . $gid . '"');
-       $e   = db_fetch_assoc($ed);
-       return '<form action="?shbox4admin-show-send-'.$gid.'" method="POST">
-             <tr>
-              <td style="background-color:#FF0000">' . $e['id'] . '</td>
-              <td style="background-color:#FF0000">' . get_n($e['uid']) . '</td>
-              <td style="background-color: #FF0000">' . date ('d.m.Y - H:i:s', $e['time'] ) . '</td>
-              <td style="background-color:#FF0000"><textarea name="edittxt" rows="2" cols="50" wrap="virtual">' . $e['txt'] . '</textarea></td>
-              <td style="background-color: #FF0000" align="center"><input name="subedit" type="submit" value="ändern" /></td>
-              <td style="background-color: #FF0000" align="center">&nbsp;</td>
-             </tr>
-            </form>';
     }
 
     function eingabe() {
